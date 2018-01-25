@@ -32,6 +32,7 @@ public class UserController {
         Iterable<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return "user/list";
+        
     }
 
     @GetMapping("/{id}")
