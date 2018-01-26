@@ -32,6 +32,7 @@ public class UserController {
         Iterable<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return "user/list";
+        
     }
 
     @GetMapping("/{id}")
@@ -39,7 +40,7 @@ public class UserController {
         User user = userRepository.findOne(id);
         model.addAttribute("user", user);
         return "user/list";
-        
+
     }
 
     @PostMapping("/login")
