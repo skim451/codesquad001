@@ -32,7 +32,7 @@ public class UserController {
         Iterable<User> userList = userRepository.findAll();
         model.addAttribute("userList", userList);
         return "user/list";
-        
+
     }
 
     @GetMapping("/{id}")
@@ -54,7 +54,7 @@ public class UserController {
             return "user/login_failed";
 
         if (user.getPassword().equals(password)) {
-            session.setAttribute("sessionedUser", user);
+            //session.setAttribute("sessionedUser", user);
             return "redirect:/";
         }
 
