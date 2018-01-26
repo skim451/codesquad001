@@ -39,8 +39,7 @@ public class UserController {
     public String show(@PathVariable long id, Model model) {
         User user = userRepository.findOne(id);
         model.addAttribute("user", user);
-        return "user/list";
-
+        return "user/profile";
     }
 
     @PostMapping("/login")
