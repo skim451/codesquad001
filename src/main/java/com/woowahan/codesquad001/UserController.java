@@ -53,7 +53,7 @@ public class UserController {
             return "user/login_failed";
 
         if (user.getPassword().equals(password)) {
-            //session.setAttribute("sessionedUser", user);
+            session.setAttribute("sessionedUser", user);
             return "redirect:/";
         }
 
