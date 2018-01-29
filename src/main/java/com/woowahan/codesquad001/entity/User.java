@@ -1,4 +1,6 @@
-package com.woowahan.codesquad001;
+package com.woowahan.codesquad001.entity;
+
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +13,11 @@ public class User {
     @Id @GeneratedValue
     private long id;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 15, unique = true)
     private String userId;
     private String password;
     private String name;
+    @Email
     private String email;
 
     public User() {

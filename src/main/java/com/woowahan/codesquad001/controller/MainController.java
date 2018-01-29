@@ -1,5 +1,9 @@
-package com.woowahan.codesquad001;
+package com.woowahan.codesquad001.controller;
 
+import com.woowahan.codesquad001.auth.LoginUser;
+import com.woowahan.codesquad001.entity.Question;
+import com.woowahan.codesquad001.entity.User;
+import com.woowahan.codesquad001.repository.QuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,23 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class MainController {
-    Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    private static final Logger log = LoggerFactory.getLogger(MainController.class);
+    
     @Autowired
-    UserRepository userRepository;
+    QuestionRepository questionRepository;
 
     @GetMapping("")
-    public String mainPage(Model model, HttpSession session) {
-        logger.debug("mainpage");
-        User user = (User) session.getAttribute("sessionedUser");
+    public String mainPage(@LoginUser User loginUser, Model model) {
+        Iterable<Question> questions = questionRepository.findAll();
 
-        if (user != null)
-            model.addAttribute("user", user);
+        model.addAttribute("loginUser", loginUser);
+        model.addAttribute("questions", questions);
 
-        return "index.html";
+        return "index/index";
     }
 }
