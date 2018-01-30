@@ -1,5 +1,6 @@
 package com.woowahan.codesquad001.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -33,48 +34,54 @@ public class Comment {
         return deleted;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public Comment setId(long id) {
         this.id = id;
+        return this;
     }
 
     public Question getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question question) {
+    public Comment setQuestion(Question question) {
         this.question = question;
+        return this;
     }
 
     public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public Comment setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+        return this;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public Comment setAuthor(User author) {
+        this.author = author;
+        return this;
     }
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public Comment setContent(String content) {
         this.content = content;
+        return this;
+    }
+
+    public Comment setDeleted(boolean deleted) {
+        this.deleted = deleted;
+        return this;
     }
 
     @Override

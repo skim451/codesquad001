@@ -1,6 +1,8 @@
 package com.woowahan.codesquad001.controller;
 
+import com.woowahan.codesquad001.auth.LoginUser;
 import com.woowahan.codesquad001.entity.Comment;
+import com.woowahan.codesquad001.entity.User;
 import com.woowahan.codesquad001.repository.CommentRepository;
 import com.woowahan.codesquad001.repository.QuestionRepository;
 import com.woowahan.codesquad001.repository.UserRepository;
@@ -22,16 +24,13 @@ public class CommentController {
     @Autowired
     private QuestionRepository questionRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @PostMapping("")
-    public String createComment(@PathVariable long questionId, long userId, String content) {
+    public String createComment(@PathVariable long questionId, @LoginUser User loginUser, String content) {
         log.debug("{}", questionId);
-        Comment comment = new Comment();
-        comment.setContent(content);
-        comment.setAuthor(userRepository.findOne(userId));
-        comment.setQuestion(questionRepository.findOne(questionId));
+        Comment comment = new Comment()
+                .setContent(content)
+                .setAuthor(loginUser)
+                .setQuestion(questionRepository.findOne(questionId));
         commentRepository.save(comment);
         return "redirect:/questions/" + questionId;
     }

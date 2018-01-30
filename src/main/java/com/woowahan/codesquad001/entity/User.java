@@ -1,5 +1,6 @@
 package com.woowahan.codesquad001.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ public class User {
 
     @Column(nullable = false, length = 15, unique = true)
     private String userId;
+    @JsonIgnore
     private String password;
     private String name;
     @Email

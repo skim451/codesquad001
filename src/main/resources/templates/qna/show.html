@@ -51,6 +51,12 @@
               <div class="qna-comment">
                   <div class="qna-comment-slipp">
 
+                      {{#if comments}}
+                        <p class="qna-comment-count"><strong>{{commentCount}}</strong>개의 의견</p>
+                      {{else}}
+                        <p class="qna-comment-count"><strong>0</strong>개의 의견</p>
+                      {{/if}}
+                      <div class="qna-comment-slipp-articles">
                           {{> qna/comments }}
                           {{> qna/comment_form }}
                       </div>
@@ -63,7 +69,7 @@
     </div>
 </div>
 
-<script type="text/template" id="answerTemplate">
+<script type="text/template" id="commentTemplate">
 	<article class="article">
 		<div class="article-header">
 			<div class="article-header-thumb">
@@ -80,12 +86,12 @@
 		<div class="article-util">
 		<ul class="article-util-list">
 			<li>
-				<a class="link-modify-article" href="/api/qna/updateAnswer/{3}">수정</a>
+				<a class="link-modify-article" href="/api/qna/updateComment/{3}">수정</a>
 			</li>
 			<li>
-				<form class="delete-answer-form" action="/api/questions/{3}/answers/{4}" method="POST">
+				<form class="delete-comment-form" action="/api/questions/{3}/comments/{4}" method="POST">
 					<input type="hidden" name="_method" value="DELETE">
-                     <button type="submit" class="delete-answer-button">삭제</button>
+                    <button type="submit" class="delete-comment-button">삭제</button>
 				</form>
 			</li>
 		</ul>

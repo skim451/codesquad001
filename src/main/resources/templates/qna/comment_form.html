@@ -1,10 +1,10 @@
 {{#if loginUser}}
-<form class="submit-write" method="POST" action="/questions/{{id}}/comments">
+<form class="comment-writer submit-write" method="POST" action="/api/questions/{{id}}/comments">
     <input type="hidden" name="userId" value={{loginUser.id}}>
     <div class="form-group" style="padding:14px;">
         <textarea name="content" id="content" class="form-control" placeholder="Update your status"></textarea>
     </div>
-    <button class="btn btn-success pull-right" type="submit">답변하기</button>
+    <input class="btn btn-success pull-right" type="submit" value="답변하기">
     <div class="clearfix" />
 </form>
 {{/if}}
