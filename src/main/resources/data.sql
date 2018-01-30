@@ -8,7 +8,7 @@ INSERT INTO
 
 INSERT INTO
     question
-        (id, created_at, author_id, title, content)
+        (id, created_at, author_id, title, content, deleted )
     VALUES
-        (null, CURRENT_TIMESTAMP, 1, 'Hello, I am pobi.', 'blah blah'),
-        (null, CURRENT_TIMESTAMP, 2, 'This is Woowa Brothers.', '123 123')
+        (null, CURRENT_TIMESTAMP, 1, 'Hello, I am pobi.', 'blah blah', false),
+        (null, CURRENT_TIMESTAMP, 2, 'This is Woowa Brothers.', '123 123', false)

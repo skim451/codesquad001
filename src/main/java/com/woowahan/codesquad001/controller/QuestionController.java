@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/questions")
-public class QuestionsController {
+public class QuestionController {
 
-    private static final Logger log = LoggerFactory.getLogger(QuestionsController.class);
+    private static final Logger log = LoggerFactory.getLogger(QuestionController.class);
 
     @Autowired
     private QuestionRepository questionRepository;
@@ -45,8 +45,13 @@ public class QuestionsController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOne(@PathVariable long id, @LoginUser User loginUser, Model model) {
-        questionRepository.delete(id);
+    public String deleteOne(@PathVariable long id) {
+        Question question = questionRepository.findOne(id);
+        question.setDeleted(true);
+        question
+                .getComments()
+                .forEach(i -> i.setDeleted(true));
+        questionRepository.save(question);
 
         return "redirect:/";
     }

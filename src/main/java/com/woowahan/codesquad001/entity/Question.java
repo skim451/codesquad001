@@ -28,23 +28,33 @@ public class Question {
     @Column(nullable = false)
     private String title;
 
-    private String content;
-
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     @Where(clause = "deleted = false")
     @OrderBy("id ASC")
-    private List<Comment> answers = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
+
+    private String content;
+
+    private boolean deleted = false;
 
     public Question() {
 
     }
 
-    public List<Comment> getAnswers() {
-        return answers;
+    public int getCommentCount() {
+        return comments.size();
     }
 
-    public void setAnswers(List<Comment> answers) {
-        this.answers = answers;
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 
     public Date getCreatedDate() {
